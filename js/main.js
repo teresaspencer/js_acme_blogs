@@ -33,7 +33,7 @@ function toggleCommentButton(postId) {
 
 // 5.
 function deleteChildElements(parentElement) {
-    
+
 }
 
 // 6.
@@ -74,4 +74,44 @@ function getUser() {
 // 13.
 function getPostComments() {
 
+}
+
+// 14.
+function displayComments() {
+
+}
+
+// 15.
+function createPosts() {
+
+}
+
+// 16.
+function displayPosts() {
+
+}
+
+// 17.
+function toggleComments() {
+
+}
+
+// 18. 
+function refreshPosts() {
+
+}
+
+// 19.
+function selectMenuChangeEventHandler() {
+
+}
+
+// 20.
+function initPage() {
+
+}
+
+// 21.
+function initApp() {
+    
 }
