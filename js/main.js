@@ -1,33 +1,39 @@
 // 1.
-function createElemWithText(tag, text, className) {
-    if (//no tag) {
-    // tag = "p";
+function createElemWithText(elemType = 'p', text = '', className) {
+    const myElem = document.createElement(elemType);
+    myElem.textContent = text;
+    if (className) {
+        myElem.classList.add(className);
     }
-    if (//no text) {
-        text = "";
-    }
-    document.createElement(tag);
-    return tag;
+    return myElem;
 }
 
 // 2.
-function createSelectOptions() {
-
+function createSelectOptions(userData) {
+    if (!userData) return;
+    const options = [];
+    for (const user of userData) {
+        const option = document.createElement("option");
+        option.value = user.id;
+        option.textContent = user.name;
+        options.push(option);
+    }
+    return options;
 }
 
 // 3.
-function toggleCommentSection() {
+function toggleCommentSection(postId) {
 
 }
 
 // 4.
-function toggleCommentButton() {
+function toggleCommentButton(postId) {
 
 }
 
 // 5.
-function deleteChildElements() {
-
+function deleteChildElements(parentElement) {
+    
 }
 
 // 6.
@@ -67,5 +73,5 @@ function getUser() {
 
 // 13.
 function getPostComments() {
-    
+
 }
