@@ -23,17 +23,33 @@ function createSelectOptions(userData) {
 
 // 3.
 function toggleCommentSection(postId) {
-
+    if (!postId) return undefined;
+    const section = document.querySelector(`section[data-post-id="${postId}"]`);
+    if (!section) return null;
+    section.classList.toggle('hide');
+    return section;
 }
 
 // 4.
 function toggleCommentButton(postId) {
-
+    if (!postId) return undefined;
+    const button = document.querySelector(`button[data-post-id="${postId}"]`);
+    if (!button) return null;
+    button.textContent =
+        button.textContent === 'Show Comments' ? 'Hide Comments' : 'Show Comments';
+    return button;
 }
 
 // 5.
 function deleteChildElements(parentElement) {
-
+    if (!(parentElement instanceof Element)) return undefined;
+    // look at this more!!
+    let child = parentElement.lastElementChild;
+    while (child) {
+        parentElement.removeChild(child);
+        child = parentElement.lastElementChild;
+    }
+    return parentElement;
 }
 
 // 6.
