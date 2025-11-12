@@ -64,7 +64,7 @@ function removeButtonListeners() {
 
 // 8.
 function createComments() {
-
+    
 }
 
 // 9.
@@ -73,37 +73,64 @@ function populateSelectMenu() {
 }
 
 // 10.
-function getUsers() {
-
+async function getUsers() {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
+        const jsonUserData = await response.json();
+        return jsonUserData;
+    } catch (error) {
+        return error;
+    }
 }
 
 // 11.
-function getUserPosts() {
-
+async function getUserPosts(userId) {
+    if (!userId) return undefined;
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
+        const jsonPostData = await response.json();
+        return jsonPostData;
+    } catch (error) {
+        return error;
+    }
 }
 
 // 12.
-function getUser() {
-
+async function getUser(userId) {
+    if (!userId) return undefined;
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+        const jsonUserData = await response.json();
+        return jsonUserData;
+    } catch (error) {
+        return error;
+    }
 }
 
 // 13.
-function getPostComments() {
-
+async function getPostComments(postId) {
+    if (!postId) return undefined;
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts?postId=${postId}`);
+        const jsonPostData = await response.json();
+        return jsonPostData;
+    } catch (error) {
+        return error;
+    }
 }
 
 // 14.
-function displayComments() {
+async function displayComments() {
 
 }
 
 // 15.
-function createPosts() {
+async function createPosts() {
 
 }
 
 // 16.
-function displayPosts() {
+async function displayPosts() {
 
 }
 
