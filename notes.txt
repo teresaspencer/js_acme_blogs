@@ -157,11 +157,13 @@ need to await data from those functions.
     b. Is an async function
     c. Receives a postId as a parameter
     d. Creates a section element with document.createElement()
-    e. Sets an attribute on the section element with section.dataset.postId
+    e. Sets an attribute on the section element with 
+    section.dataset.postId
     f. Adds the classes 'comments' and 'hide' to the section element
     g. Creates a variable comments equal to the result of await
     getPostComments(postId);
-    h. Creates a variable named fragment equal to createComments(comments)
+    h. Creates a variable named fragment equal to 
+    createComments(comments)
     i. Append the fragment to the section
     j. Return the section element
 

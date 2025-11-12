@@ -111,7 +111,7 @@ async function getUser(userId) {
 async function getPostComments(postId) {
     if (!postId) return undefined;
     try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts?postId=${postId}`);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
         const jsonPostData = await response.json();
         return jsonPostData;
     } catch (error) {
@@ -120,8 +120,14 @@ async function getPostComments(postId) {
 }
 
 // 14.
-async function displayComments() {
-
+async function displayComments(postId) {
+    if (!postId) return undefined;
+    const section = document.createElement();
+    section.dataset.postId;
+    const comments = await getPostComments(postId);
+    const fragment = createComments(comments);
+    section.append(fragment);
+    return section;
 }
 
 // 15.
