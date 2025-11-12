@@ -54,22 +54,58 @@ function deleteChildElements(parentElement) {
 
 // 6.
 function addButtonListeners() {
-
+    const buttons = document.querySelectorAll("main button");
+    if (buttons.length > 0) {
+        for (const button of buttons) {
+            if (button.dataset.postId) {
+                button.addEventListener("click", function(event) {
+                    toggleComments(event, button.dataset.postId);
+                });
+            }
+        }
+    }
+    return buttons;
 }
 
 // 7.
 function removeButtonListeners() {
-
+    const buttons = document.querySelectorAll("main button");
+    if (buttons.length > 0) {
+        for (const button of buttons) {
+            if (button.dataset.postId) {
+                button.removeEventListener;
+            }
+        }
+    }
+    return buttons;
 }
 
 // 8.
-function createComments() {
-    
+function createComments(comments) {
+    if (!comments) return undefined;
+    const fragment = document.createDocumentFragment();
+    for (const comment of comments) {
+        const article = document.createElement('article');
+        const h3 = createElemWithText('h3', comment.name);
+        const p = createElemWithText('p', comment.body);
+        const pEmail = createElemWithText('p', `From: ${comment.email}`);
+        article.append(h3);
+        article.append(p);
+        article.append(pEmail);
+        fragment.append(article);
+    }
+    return fragment;
 }
 
 // 9.
-function populateSelectMenu() {
-
+function populateSelectMenu(users) {
+    if (!users) return undefined;
+    const selectMenu = document.getElementById("selectMenu");
+    const options = createSelectOptions(users);
+    for (const option in options) {
+        selectMenu.append(option);
+    }
+    return selectMenu;
 }
 
 // 10.
