@@ -102,7 +102,7 @@ function populateSelectMenu(users) {
     if (!users) return undefined;
     const selectMenu = document.getElementById("selectMenu");
     const options = createSelectOptions(users);
-    for (const option in options) {
+    for (const option of options) {
         selectMenu.append(option);
     }
     return selectMenu;
@@ -192,11 +192,16 @@ function selectMenuChangeEventHandler() {
 }
 
 // 20.
-function initPage() {
-
+async function initPage() {
+    // const something = await getUsers();
 }
 
 // 21.
 function initApp() {
-    
+    // initPage();
+    const selectMenu = document.getElementById("selectMenu");
+    selectMenu.addEventListener("change", (event) => {
+        selectMenuChangeEventHangler(event);
+    });
+
 }
