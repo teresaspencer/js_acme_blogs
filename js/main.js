@@ -167,8 +167,14 @@ async function displayComments(postId) {
 }
 
 // 15.
-async function createPosts() {
-
+async function createPosts(posts) {
+    if (!posts) return undefined;
+    const fragment = document.createDocumentFragment();
+    for(const post of posts) {
+        post = document.createElement('article');
+        post.title = document.createElement('h2');
+        post.body = document.createElement('p');
+    }
 }
 
 // 16.
