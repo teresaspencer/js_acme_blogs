@@ -269,8 +269,8 @@ in the proper order.
     e. Result is the users JSON data
     f. Passes the users JSON data to the populateSelectMenu function
     g. Result is the select element returned from populateSelectMenu
-    h. Return an array with users JSON data from getUsers and the select element
-    result from populateSelectMenu: [users, select]
+    h. Return an array with users JSON data from getUsers and the 
+    select element result from populateSelectMenu: [users, select]
 
 21. initApp
     a. Dependencies: initPage, selectMenuChangeEventHandler

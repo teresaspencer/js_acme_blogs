@@ -255,7 +255,9 @@ async function selectMenuChangeEventHandler(event) {
 
 // 20.
 async function initPage() {
-    // const something = await getUsers();
+    const users = await getUsers();
+    const select = populateSelectMenu(users);
+    return [users, select];
 }
 
 // 21.
