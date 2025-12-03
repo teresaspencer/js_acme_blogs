@@ -202,7 +202,6 @@ async function createPosts(posts) {
         article.appendChild(phrase);
         article.appendChild(button);
 
-
         const section = await displayComments(post.id);
         article.appendChild(section);
 
@@ -219,24 +218,39 @@ async function displayPosts(posts) {
         main.appendChild(element);
         return element;
     }
-    const element = // create paragraph
+    const element = main.querySelector('.default-text');
     main.appendChild(element);
     return element;
 }
 
 // 17.
-function toggleComments() {
-
+function toggleComments(event, postId) {
+    if (!event || !postId) return undefined;
+    event.target.listener = true;
+    const section = toggleCommentSection(postId);
+    const button = toggleCommentButton(postId);
+    return [section, button];
 }
 
 // 18. 
-function refreshPosts() {
-
+async function refreshPosts(posts) {
+    if (!posts) return undefined;
+    const removeButtons = removeButtonListeners('button');
+    const main = deleteChildElements(document.querySelector('main'));
+    const fragment = await displayPosts(posts);
+    const addButtons = addButtonListeners('button');
+    return [removeButtons, main, fragment, addButtons];
 }
 
 // 19.
-function selectMenuChangeEventHandler() {
-
+async function selectMenuChangeEventHandler(event) {
+    if (!event || !event.target) return undefined;
+    event.target.disabled = true;
+    const userId = event.target.value || 1;
+    const posts = await getUserPosts(userId);
+    const refreshPostsArray = await refreshPosts(posts);
+    event.target.disabled = false;
+    return [userId, posts, refreshPostsArray];
 }
 
 // 20.
@@ -249,7 +263,7 @@ function initApp() {
     // initPage();
     const selectMenu = document.getElementById("selectMenu");
     selectMenu.addEventListener("change", (event) => {
-        selectMenuChangeEventHangler(event);
+        selectMenuChangeEventHandler(event);
     });
 
 }
