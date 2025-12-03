@@ -158,8 +158,9 @@ async function getPostComments(postId) {
 // 14.
 async function displayComments(postId) {
     if (!postId) return undefined;
-    const section = document.createElement();
-    section.dataset.postId;
+    const section = document.createElement('section');
+    section.dataset.postId = postId;
+    section.classList.add('comments', 'hide');
     const comments = await getPostComments(postId);
     const fragment = createComments(comments);
     section.append(fragment);
@@ -171,15 +172,56 @@ async function createPosts(posts) {
     if (!posts) return undefined;
     const fragment = document.createDocumentFragment();
     for(const post of posts) {
-        post = document.createElement('article');
-        post.title = document.createElement('h2');
-        post.body = document.createElement('p');
+        const article = document.createElement('article');
+
+        const title = document.createElement('h2');
+        title.textContent = post.title;
+
+        const body = document.createElement('p');
+        body.textContent = post.body;
+
+        const idPara = document.createElement('p');
+        idPara.textContent =  `Post ID: ${post.id}`;
+
+        const author = await getUser(post.userId);
+
+        const authorPara = document.createElement('p');
+        authorPara.textContent = `Author: ${author.name} with ${author.company.name}`;
+
+        const phrase = document.createElement('p');
+        phrase.textContent = `${author.company.catchPhrase}`; 
+
+        const button = document.createElement('button');
+        button.textContent = 'Show Comments';
+        button.dataset.postId = post.id;
+
+        article.appendChild(title);
+        article.appendChild(body);
+        article.appendChild(idPara);
+        article.appendChild(authorPara);
+        article.appendChild(phrase);
+        article.appendChild(button);
+
+
+        const section = await displayComments(post.id);
+        article.appendChild(section);
+
+        fragment.appendChild(article);
     }
+    return fragment;
 }
 
 // 16.
-async function displayPosts() {
-
+async function displayPosts(posts) {
+    const main = document.querySelector('main');
+    if (posts) {
+        const element = await createPosts(posts);
+        main.appendChild(element);
+        return element;
+    }
+    const element = // create paragraph
+    main.appendChild(element);
+    return element;
 }
 
 // 17.
