@@ -282,11 +282,12 @@ in the proper order.
     f. NOTE: All of the above needs to be correct for your app to function correctly.
     However, I can only test if the initApp function exists. It does not return anything.
 
-NOTE: There is one last step to get your app to function correctly. I cannot test for this, but you
-must apply it to call the script into action.
+NOTE: There is one last step to get your app to function correctly. I cannot 
+test for this, but you must apply it to call the script into action.
 
 *** This must be underneath the definition of initApp in your file.
 1. Add an event listener to the document.
 2. Listen for the “DOMContentLoaded” event.
 3. Put initApp in the listener as the event handler function.
-4. This will call initApp after the DOM content has loaded and your app will be started.
+4. This will call initApp after the DOM content has loaded and your app will 
+be started.

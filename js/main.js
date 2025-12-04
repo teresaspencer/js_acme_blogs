@@ -262,10 +262,10 @@ async function initPage() {
 
 // 21.
 function initApp() {
-    // initPage();
+    initPage();    
     const selectMenu = document.getElementById("selectMenu");
     selectMenu.addEventListener("change", (event) => {
         selectMenuChangeEventHandler(event);
     });
-
 }
+document.addEventListener('DOMContentLoaded', initApp);
