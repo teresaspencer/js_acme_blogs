@@ -244,9 +244,14 @@ async function refreshPosts(posts) {
 
 // 19.
 async function selectMenuChangeEventHandler(event) {
-    if (!event || !event.target) return undefined;
+    if (event === undefined) return undefined;
+    //if (!event.target) 
+        //return [undefined, undefined, undefined];
+
     event.target.disabled = true;
-    const userId = event.target.value || 1;
+    console.log(event.target.value);
+    const userId = +event.target.value || 1;
+ 
     const posts = await getUserPosts(userId);
     const refreshPostsArray = await refreshPosts(posts);
     event.target.disabled = false;
