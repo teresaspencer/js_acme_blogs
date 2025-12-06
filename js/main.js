@@ -248,9 +248,9 @@ async function selectMenuChangeEventHandler(event) {
     if (!event.target) return undefined;
 
     event.target.disabled = true;
-    let userId = event.target.value || 1;
-    if (isNaN(event.target.value) || !event.target.value)
-        userId = 1;
+    let userId = Number(event.target.value) || 1;
+    //if (isNaN(event.target.value) || !event.target.value)
+        //userId = 1;
     const posts = await getUserPosts(userId);
     const refreshPostsArray = await refreshPosts(posts);
     event.target.disabled = false;
