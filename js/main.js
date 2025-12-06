@@ -57,23 +57,28 @@ function addButtonListeners() {
     const buttons = document.querySelectorAll("main button");
     if (buttons.length > 0) {
         for (const button of buttons) {
-            if (button.dataset.postId) {
-                button.addEventListener("click", function(event) {
-                    toggleComments(event, button.dataset.postId);
-                });
+            const postId = button.dataset.postId;
+            if (postId) {
+                button.addEventListener("click", toggleCommentsHandler) 
             }
         }
     }
     return buttons;
 }
 
+function toggleCommentsHandler(event) {
+    const postId = event.target.dataset.postId;
+    toggleComments(event, postId);
+};
+
 // 7.
 function removeButtonListeners() {
     const buttons = document.querySelectorAll("main button");
     if (buttons.length > 0) {
         for (const button of buttons) {
-            if (button.dataset.postId) {
-                button.removeEventListener;
+            const postId = button.dataset.postId;
+            if (postId) {
+                button.removeEventListener("click", toggleCommentsHandler);
             }
         }
     }
@@ -235,10 +240,10 @@ function toggleComments(event, postId) {
 // 18. 
 async function refreshPosts(posts) {
     if (!posts) return undefined;
-    const removeButtons = removeButtonListeners('button');
+    const removeButtons = removeButtonListeners();
     const main = deleteChildElements(document.querySelector('main'));
     const fragment = await displayPosts(posts);
-    const addButtons = addButtonListeners('button');
+    const addButtons = addButtonListeners();
     return [removeButtons, main, fragment, addButtons];
 }
 
@@ -249,8 +254,8 @@ async function selectMenuChangeEventHandler(event) {
 
     event.target.disabled = true;
     let userId = Number(event.target.value) || 1;
-    //if (isNaN(event.target.value) || !event.target.value)
-        //userId = 1;
+    //if (event.target.value || isNaN(userId))
+    //    userId = 1;
     const posts = await getUserPosts(userId);
     const refreshPostsArray = await refreshPosts(posts);
     event.target.disabled = false;
