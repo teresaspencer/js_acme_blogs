@@ -245,13 +245,12 @@ async function refreshPosts(posts) {
 // 19.
 async function selectMenuChangeEventHandler(event) {
     if (event === undefined) return undefined;
-    //if (!event.target) 
-        //return [undefined, undefined, undefined];
+    if (!event.target) return undefined;
 
     event.target.disabled = true;
-    console.log(event.target.value);
-    const userId = +event.target.value || 1;
- 
+    let userId = event.target.value || 1;
+    if (isNaN(event.target.value) || !event.target.value)
+        userId = 1;
     const posts = await getUserPosts(userId);
     const refreshPostsArray = await refreshPosts(posts);
     event.target.disabled = false;
