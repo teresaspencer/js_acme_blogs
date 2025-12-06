@@ -127,6 +127,9 @@ async function getUsers() {
 // 11.
 async function getUserPosts(userId) {
     if (!userId) return undefined;
+    if (isNaN(userId) || Number(userId) < 1) {
+        userId = 1;
+    }
     try {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
         const jsonPostData = await response.json();
@@ -248,9 +251,9 @@ async function selectMenuChangeEventHandler(event) {
     if (!event.target) return undefined;
 
     event.target.disabled = true;
-    let userId = Number(event.target.value) || 1;
-    //if (event.target.value || isNaN(userId))
-    //    userId = 1;
+    let userId = event.target.value || 1;
+
+
     const posts = await getUserPosts(userId);
     const refreshPostsArray = await refreshPosts(posts);
     event.target.disabled = false;
