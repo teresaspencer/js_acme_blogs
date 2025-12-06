@@ -200,12 +200,7 @@ async function createPosts(posts) {
         button.textContent = 'Show Comments';
         button.dataset.postId = post.id;
 
-        article.appendChild(title);
-        article.appendChild(body);
-        article.appendChild(idPara);
-        article.appendChild(authorPara);
-        article.appendChild(phrase);
-        article.appendChild(button);
+        article.append(title, body, idPara, authorPara, phrase, button);
 
         const section = await displayComments(post.id);
         article.appendChild(section);
