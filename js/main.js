@@ -244,7 +244,7 @@ async function refreshPosts(posts) {
 
 // 19.
 async function selectMenuChangeEventHandler(event) {
-    if (event === undefined) return undefined;
+    if (!event) return undefined;
     if (!event.target) return undefined;
 
     event.target.disabled = true;
